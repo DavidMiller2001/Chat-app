@@ -1,7 +1,8 @@
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 export const metadata = {
   title: "Create T3 App",
@@ -17,10 +18,20 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
-        <body className="flex h-screen items-center justify-center bg-slate-700">
+        <body className="flex min-h-[100vmin] items-center justify-center bg-slate-500">
+          <NavBar />
           {children}
         </body>
       </html>
     </ClerkProvider>
+  );
+}
+
+function NavBar() {
+  return (
+    <nav className="fixed top-0 flex w-full justify-between bg-slate-800 p-4  text-white">
+      <Link href="/">Home</Link>
+      <UserButton />
+    </nav>
   );
 }
